@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="hkMQQcYw4QigZu5LtwpsDLGjXDiqh9KYVrpzTNZGhMM" />
-    <meta name="description" content="A Free Notepad App That Can Sync Your Notes Accross Devices On Your Network">
+    <meta name="description" content="A Free Online Notepad App That Can Sync Your Notes Across Devices On Your Network">
     <title>Cloud Notepad</title>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/marcelodolza/iziToast/dist/js/iziToast.min.js"></script>
@@ -141,6 +141,36 @@
 
 <script>
     window.addEventListener('load', () => {
+        window.SaveMyData = () => {
+            $.ajax({
+                url: '/save',
+                method: 'POST',
+                data: {
+                    text: $('.notepad').val()
+                }
+            }).done((saveData) => {
+                if (saveData.success != null && saveData.success == true) {
+                    iziToast.success({
+                        title: 'Success',
+                        message: 'Successfully Saved Your Notes!',
+                        timeout: 2000
+                    });
+                } else {
+                    iziToast.error({
+                        title: 'Failed:',
+                        message: 'Internal Server Error, Please Try Again Later!',
+                        timeout: 2000
+                    });
+                }
+            }).fail(() => {
+                iziToast.error({
+                    title: 'Failed:',
+                    message: 'Could Not Save Your Data, Please Try Again Later!',
+                    timeout: 2000
+                });
+            });
+        }
+
         $('.loader').fadeOut(500, () => {
              <% if (previouslyLoggedIn == false) { %>
                 alert(`
@@ -171,6 +201,13 @@ Thank You For Using This App 😊
 
     window.addEventListener('resize', () => {
         document.body.style.height = window.innerHeight + 'px';
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.ctrlKey == true && event.key == 's') {
+            event.preventDefault();
+            window.SaveMyData();
+        }
     });
 
     $('.delete-data-btn').click(() => {
@@ -214,33 +251,7 @@ Thank You For Using This App 😊
     });
 
     $('.save-btn').click(() => {
-        $.ajax({
-            url: '/save',
-            method: 'POST',
-            data: {
-                text: $('.notepad').val()
-            }
-        }).done((saveData) => {
-            if (saveData.success != null && saveData.success == true) {
-                iziToast.success({
-                    title: 'Success',
-                    message: 'Successfully Saved Your Notes!',
-                    timeout: 2000
-                });
-            } else {
-                iziToast.error({
-                    title: 'Failed:',
-                    message: 'Internal Server Error, Please Try Again Later!',
-                    timeout: 2000
-                });
-            }
-        }).fail(() => {
-            iziToast.error({
-                title: 'Failed:',
-                message: 'Could Not Save Your Data, Please Try Again Later!',
-                timeout: 2000
-            });
-        });
+        window.SaveMyData();
     });
 </script>
 
