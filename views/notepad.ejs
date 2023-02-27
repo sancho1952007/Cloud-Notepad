@@ -18,7 +18,7 @@
     </div>
 
     <h1>Cloud Notepad</h1>
-    <textarea class="notepad" placeholder="Type something here..."><%= text %></textarea>
+    <textarea class="notepad" placeholder="Type something here..." maxlength="405522"><%= text %></textarea>
     <div class="options">
         <div class="btn clear-btn">Clear</div>
         <div class="btn delete-data-btn">Delete My Data</div>
@@ -148,7 +148,7 @@ Free And Unlimited Database By: Deta Space [https://deta.space/]
 
 Icon By: Icons8 [https://icons8.com/]
 +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-Max Characters Allowed: ~405522
+Max Characters Allowed: 405522
 This App Is Completely Free!
 
 Tip:
@@ -159,6 +159,7 @@ Note: PLEASE DO NOT USE THIS AS A LONG TERM STOROAGE SERVICE SINCE DATA IS STORE
 Thank You For Using This App 😊
             `);
             <% } %>
+                $('.notepad').focus();
         });
     });
 

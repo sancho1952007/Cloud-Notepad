@@ -11,7 +11,7 @@ app.set('trust proxy', true);
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.urlencoded({ extended: false, limit: '5mb' }));
+app.use(express.urlencoded({ extended: false, limit: '1mb' }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'icon.png')))
 
