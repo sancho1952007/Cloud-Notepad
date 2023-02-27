@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Notepad</title>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/marcelodolza/iziToast/dist/js/iziToast.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/marcelodolza/iziToast/dist/css/iziToast.min.css">
+</head>
+
+<body>
+    <div class="loader">
+        <img src="/icon.png" alt="">
+        Loading Your Previous Notes
+    </div>
+
+    <h1>Cloud Notepad</h1>
+    <textarea class="notepad" placeholder="Type something here..."><%= text %></textarea>
+    <div class="options">
+        <div class="btn clear-btn">Clear</div>
+        <div class="btn delete-data-btn">Delete My Data</div>
+        <div class="btn save-btn">Save</div>
+    </div>
+
+    <div class="message">Created With ❤️ By
+        <a href="https://www.sololearn.com/profile/19684449" target="_blank">Sancho
+            Godinho</a>
+    </div>
+</body>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Poppins:wght@300;400;500&display=swap');
+
+    body {
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .loader {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 20px;
+        font-family: 'Barlow', sans-serif;
+        font-weight: 500;
+        user-select: none;
+        pointer-events: none;
+
+    }
+
+    h1 {
+        font-size: 25px;
+        margin: 10px;
+        font-family: 'Barlow', sans-serif;
+    }
+
+    .notepad {
+        width: calc(100% - 40px);
+        height: calc(100% - 170px);
+        border-radius: 15px;
+        padding: 10px;
+        resize: none;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border: 0;
+        background-color: rgb(224, 224, 224);
+        font-family: 'Barlow', sans-serif;
+        font-size: 17px;
+        max-width: 900px;
+    }
+
+    .options {
+        width: calc(100% - 20px);
+        max-width: 900px;
+        display: flex;
+    }
+
+    .btn {
+        width: calc(100% - 20px);
+        color: white;
+        cursor: pointer;
+        background-color: blueviolet;
+        padding: 10px;
+        font-family: 'Barlow', sans-serif;
+        font-size: 15px;
+        transition: all .10s linear;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-right: 1px solid darkgrey;
+    }
+
+    .btn:active {
+        background-color: rgb(123, 39, 202);
+    }
+
+    .clear-btn {
+        border-bottom-left-radius: 15px;
+    }
+
+    .save-btn {
+        border-right: 0;
+        border-bottom-right-radius: 15px;
+    }
+
+    .message {
+        margin-top: 5px;
+        font-family: 'Barlow', sans-serif;
+    }
+
+    .message a {
+        all: unset;
+        color: blue;
+        cursor: pointer;
+    }
+
+    * {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+</style>
+
+<script>
+    window.addEventListener('load', () => {
+        $('.loader').fadeOut(500, () => {
+             <% if (previouslyLoggedIn == false) { %>
+                alert(`
+Created By: Sancho Godinho [https://www.sololearn.com/profile/19684449]
+
+Free And Unlimited Database By: Deta Space [https://deta.space/]
+
+Icon By: Icons8 [https://icons8.com/]
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+Max Characters Allowed: ~405522
+This App Is Completely Free!
+
+Tip:
+Save The Notes On This Device And Visit It On Another Device In The Same Network, See The Magic 🔥
+
+Note: PLEASE DO NOT USE THIS AS A LONG TERM STOROAGE SERVICE SINCE DATA IS STORED ONLY TILL 5 YEARS AND ONLY ON THIS NETWORK IN THIS APP!
+
+Thank You For Using This App 😊
+            `);
+            <% } %>
+        });
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        document.body.style.height = window.innerHeight + 'px';
+    });
+
+    window.addEventListener('resize', () => {
+        document.body.style.height = window.innerHeight + 'px';
+    });
+
+    $('.delete-data-btn').click(() => {
+        iziToast.question({
+            timeout: null,
+            close: false,
+            overlay: true,
+            displayMode: 'once',
+            id: 'question',
+            zindex: 999,
+            title: 'Request Delete Of Data',
+            message: 'I, Sancho Godinho The Developer Of Cloud Notepad Cares About Your Privacy And So, By Clicking "Yes" You Can Completely Delete Your Data From Our Database!',
+            position: 'center',
+            buttons: [
+                ['<button>YES</button>', function (instance, toast) {
+
+                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                    $.ajax({
+                        url: '/delete',
+                        method: 'POST'
+                    }).done((data) => {
+                        if (data.success != null && data.success == true) {
+                            alert('Your Data Has Been Successfully Deleted ✔️');
+                            $('.notepad').val('');
+                        }
+                        else {
+                            alert('Internal Server Error, Please Try Again Later!');
+                        }
+                    }).fail(() => {
+                        alert('Failed To Send Request To Server!');
+                    });
+
+                }, true],
+                ['<button>NO</button>', function (instance, toast) {
+
+                    instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+
+                }],
+            ]
+        });
+    });
+
+    $('.save-btn').click(() => {
+        $.ajax({
+            url: '/save',
+            method: 'POST',
+            data: {
+                text: $('.notepad').val()
+            }
+        }).done((saveData) => {
+            if (saveData.success != null && saveData.success == true) {
+                iziToast.success({
+                    title: 'Success',
+                    message: 'Successfully Saved Your Notes!',
+                    timeout: 2000
+                });
+            } else {
+                iziToast.error({
+                    title: 'Failed:',
+                    message: 'Internal Server Error, Please Try Again Later!',
+                    timeout: 2000
+                });
+            }
+        }).fail(() => {
+            iziToast.error({
+                title: 'Failed:',
+                message: 'Could Not Save Your Data, Please Try Again Later!',
+                timeout: 2000
+            });
+        });
+    });
+</script>
+
+</html>
