@@ -3,6 +3,7 @@ const favicon = require('serve-favicon');
 const express = require('express');
 const path = require('path');
 const { Deta } = require('deta');
+const crypto = require('crypto');
 require('dotenv').config();
 
 let app = express();
@@ -20,6 +21,7 @@ const Notes = deta.Base('Notes');
 
 app.get('/', async (req, res) => {
     let ip = req.ip;
+    ip = crypto.createHash('md5').update(ip).digest("hex");
     let GetNotes = await Notes.get(ip);
     if (GetNotes == null) {
         await Notes.put({
@@ -51,6 +53,7 @@ app.get('/', async (req, res) => {
 
 app.post('/save', async (req, res) => {
     let ip = req.ip;
+    ip = crypto.createHash('md5').update(ip).digest("hex");
     let text = req.body.text;
     if (text != null) {
         await Notes.put({
@@ -64,7 +67,9 @@ app.post('/save', async (req, res) => {
 });
 
 app.post('/delete', async (req, res) => {
-    await Notes.delete(req.ip);
+    let ip = req.ip;
+    ip = crypto.createHash('md5').update(ip).digest("hex");
+    await Notes.delete(ip);
     res.send({ success: true });
 });
 
