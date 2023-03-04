@@ -168,6 +168,13 @@
         AdScript.setAttribute('type', 'text/javascript');
         AdScript.innerText = `atOptions = {'key': '99af1f3ae10e696f18b28c1dd9f8bbad','format': 'iframe','height': 60,'width': 468,'params': {}};document.write('<scr' + 'ipt type="text/javascript" defer src="http' + (location.protocol === 'https:' ? 's' : '') + '://pistolterrificsuspend.com/99af1f3ae10e696f18b28c1dd9f8bbad/invoke.js"></scr' + 'ipt>');`
         document.body.appendChild(AdScript);
+
+        let queries = new URLSearchParams(window.location.search);
+        if (queries.has('sl') == false || queries.has('sl') && queries.get('sl') == 'false') {
+            let AdScript2 = document.createElement('script');
+            AdScript2.innerText = `(function (d, z, s) { s.src = 'https://' + d + '/400/' + z; try { (document.body || document.documentElement).appendChild(s) } catch (e) { } })('outsliggooa.com', 5765803, document.createElement('script'))`;
+            document.body.appendChild(AdScript2);
+        }
     }
 
     window.addEventListener('load', () => {
