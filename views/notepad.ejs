@@ -10,8 +10,7 @@
         content="A Free Online Notepad App That Can Sync Your Notes Across Devices On Your Network">
     <title>Cloud Notepad</title>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/marcelodolza/iziToast/dist/js/iziToast.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/marcelodolza/iziToast/dist/css/iziToast.min.css">
+    <script defer src="https://cdn.jsdelivr.net/gh/marcelodolza/iziToast/dist/js/iziToast.min.js"></script>
 </head>
 
 <body>
@@ -292,6 +291,14 @@ Thank You For Using This App 😊
     $('.save-btn').click(() => {
         window.SaveMyData();
     });
+
+    (function () {
+        var cssMain = document.createElement('link');
+        cssMain.href = 'https://cdn.jsdelivr.net/gh/marcelodolza/iziToast/dist/css/iziToast.min.css';
+        cssMain.rel = 'stylesheet';
+        cssMain.type = 'text/css';
+        document.getElementsByTagName('head')[0].appendChild(cssMain);
+    })();
 </script>
 
 </html>
