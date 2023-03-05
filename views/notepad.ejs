@@ -11,7 +11,6 @@
     <title>Cloud Notepad - Free Online Notes App</title>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/gh/marcelodolza/iziToast/dist/js/iziToast.min.js"></script>
-    <script src="https://richinfo.co/richpartners/push/js/rp-cl-ob.js?pubid=872210&siteid=326551&niche=33"></script>
 </head>
 
 <body>
@@ -172,7 +171,7 @@
         let queries = new URLSearchParams(window.location.search);
         if (queries.has('sl') == false || queries.has('sl') && queries.get('sl') == 'false') {
             let AdScript2 = document.createElement('script');
-            AdScript2.innerText = `(function (d, z, s) { s.src = 'https://' + d + '/400/' + z; try { (document.body || document.documentElement).appendChild(s) } catch (e) { } })('outsliggooa.com', 5765803, document.createElement('script'))`;
+            AdScript2.setAttribute('src', 'https://richinfo.co/richpartners/push/js/rp-cl-ob.js?pubid=872210&siteid=326551&niche=33');
             document.body.appendChild(AdScript2);
         }
     }
