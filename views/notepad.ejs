@@ -169,12 +169,12 @@
         AdScript.innerText = `atOptions = {'key': '99af1f3ae10e696f18b28c1dd9f8bbad','format': 'iframe','height': 60,'width': 468,'params': {}};document.write('<scr' + 'ipt type="text/javascript" defer src="http' + (location.protocol === 'https:' ? 's' : '') + '://pistolterrificsuspend.com/99af1f3ae10e696f18b28c1dd9f8bbad/invoke.js"></scr' + 'ipt>');`
         document.body.appendChild(AdScript);
 
-        let queries = new URLSearchParams(window.location.search);
-        if (queries.has('sl') == false || queries.has('sl') && queries.get('sl') == 'false') {
-            let AdScript2 = document.createElement('script');
-            AdScript2.setAttribute('src', 'https://richinfo.co/richpartners/push/js/rp-cl-ob.js?pubid=872210&siteid=326551&niche=33');
-            document.body.appendChild(AdScript2);
-        }
+        // let queries = new URLSearchParams(window.location.search);
+        // if (queries.has('sl') == false || queries.has('sl') && queries.get('sl') == 'false') {
+        //     let AdScript2 = document.createElement('script');
+        //     AdScript2.setAttribute('src', '//pistolterrificsuspend.com/bc/73/32/bc7332d0b64089cd9a1d1e7b992c84c4.js');
+        //     document.body.appendChild(AdScript2);
+        // }
     }
 
     window.addEventListener('load', () => {
