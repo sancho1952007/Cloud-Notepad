@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <meta name="google-site-verification" content="hkMQQcYw4QigZu5LtwpsDLGjXDiqh9KYVrpzTNZGhMM" />
     <meta name="description"
-        content="Cloud notepad is a free online cloud notes app to sync your notes across devices on your network for free!">    <title>Cloud Notepad - A Secure And Free Online Notes App</title>
+        content="Cloud notepad is a free online cloud notes app to sync your notes across devices on your network for free!">
+    <title>Cloud Notepad - A Secure And Free Online Notes App</title>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/gh/marcelodolza/iziToast/dist/js/iziToast.min.js"></script>
     <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
-    <meta name="hilltopads-site-verification" content="f5e323a89520ab57833aabf4edead98f588a80bc" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TERKYJHFPQ"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -51,6 +51,10 @@
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Poppins:wght@300;400;500&display=swap');
+
+    html {
+        overflow: hidden;
+    }
 
     body {
         width: 100vw;
@@ -180,9 +184,11 @@
     } else {
         let AdScript = document.createElement('script');
         AdScript.setAttribute('type', 'text/javascript');
-        AdScript.setAttribute('async', true);
-        AdScript.innerText = `atOptions = {'key': '99af1f3ae10e696f18b28c1dd9f8bbad','format': 'iframe','height': 60,'width': 468,'params': {}
-};document.write('<scr' + 'ipt async type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://sophomoreprimarilyprey.com/99af1f3ae10e696f18b28c1dd9f8bbad/invoke.js"></scr' + 'ipt>');`;
+        if (window.innerWidth >= 400) {
+            AdScript.innerText = `atOptions = {'key' : '99af1f3ae10e696f18b28c1dd9f8bbad','format' : 'iframe','height' : 60,'width' : 468,'params' : {}};document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://sophomoreprimarilyprey.com/99af1f3ae10e696f18b28c1dd9f8bbad/invoke.js"></scr' + 'ipt>');`;
+        } else {
+            AdScript.innerText = `atOptions = {'key' : '6f530cdc90a480ad509b3f7fb3a2c627','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://sophomoreprimarilyprey.com/6f530cdc90a480ad509b3f7fb3a2c627/invoke.js"></scr' + 'ipt>');`;
+        }
         document.body.appendChild(AdScript);
     }
 
