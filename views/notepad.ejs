@@ -48,6 +48,9 @@
     <div class="message">Created With ❤️ By
         <a href="https://www.sololearn.com/profile/19684449" target="_blank">Sancho
             Godinho</a>
+        <br>
+        You Can Hire Me To <a href="https://www.fiverr.com/s/9R66kE" target="_blank">Make You A Website</a> Or <a
+            href="https://www.fiverr.com/s/xK88KQ" target="_blank">Write You Content</a> At Affordable Rates!
     </div>
 </body>
 
@@ -150,6 +153,7 @@
         margin-top: 5px;
         font-family: 'Barlow', sans-serif;
         margin-bottom: 5px;
+        text-align: center;
     }
 
     .message a {
@@ -165,35 +169,6 @@
 </style>
 
 <script>
-    // console.clear = () => { }
-    var a = document.createElement('div');
-    a.innerHTML = '&nbsp;';
-    a.className = 'ads ad adsbox doubleclick ad-placement carbon-ads adglare';
-    a.style = 'width: 1px !important; height: 1px !important; position: absolute !important; left: -5000px !important; top: -5000px !important;';
-    var ads = false;
-    try {
-        document.body.appendChild(a);
-        var e = document.getElementsByClassName('adsbox')[0];
-        if (e.offsetHeight === 0 || e.clientHeight === 0) ads = true;
-        if (window.getComputedStyle !== undefined) {
-            var tmp = window.getComputedStyle(e, null);
-            if (tmp && (tmp.getPropertyValue('display') == 'none' || tmp.getPropertyValue('visibility') == 'hidden')) r = true;
-        }
-        document.body.removeChild(a);
-    } catch (e) { }
-    if (ads == true) {
-        alert('Please 🙏 Disable Your Ad Blocker To Support The Developer 😭');
-    } else {
-        let AdScript = document.createElement('script');
-        AdScript.setAttribute('type', 'text/javascript');
-        if (window.innerWidth >= 400) {
-            AdScript.innerText = `atOptions = {'key' : '99af1f3ae10e696f18b28c1dd9f8bbad','format' : 'iframe','height' : 60,'width' : 468,'params' : {}};document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://sophomoreprimarilyprey.com/99af1f3ae10e696f18b28c1dd9f8bbad/invoke.js"></scr' + 'ipt>');`;
-        } else {
-            AdScript.innerText = `atOptions = {'key' : '6f530cdc90a480ad509b3f7fb3a2c627','format' : 'iframe','height' : 50,'width' : 320,'params' : {}};document.write('<scr' + 'ipt type="text/javascript" src="http' + (location.protocol === 'https:' ? 's' : '') + '://sophomoreprimarilyprey.com/6f530cdc90a480ad509b3f7fb3a2c627/invoke.js"></scr' + 'ipt>');`;
-        }
-        document.body.appendChild(AdScript);
-    }
-
     window.addEventListener('load', () => {
         window.SaveMyData = () => {
             $.ajax({
