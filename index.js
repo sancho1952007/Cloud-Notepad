@@ -73,4 +73,15 @@ app.post('/delete', async (req, res) => {
     res.send({ success: true });
 });
 
+// Delete The Blank Notes When Needed
+// (async () => {
+//     let docs = await Notes.fetch();
+//     docs.items.forEach(async element => {
+//         if (element.text.replaceAll(' ', '') == '') {
+//             await Notes.delete(element.key);
+//         }
+//     });
+//     console.log('Completed Deleting Blank Notes!');
+// })();
+
 app.listen(8000);
